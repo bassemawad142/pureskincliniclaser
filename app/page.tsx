@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 
 const GOOGLE_SHEET_URL =
-  'https://script.google.com/macros/s/AKfycbzyDy21xPE7niFqAzFWJLSuasXdT-BrRy-s-OJEbqjfcNbxFaApEX4GWumjpRyZBNu3eQ/exec'
+  'https://script.google.com/macros/s/AKfycbyTv9zDkWTji5PCw9hedklTQ6P-fz8o_HTpLGyU70Z1iYiGpZjIpra9ptYw9E311i4/exec'
 const GOOGLE_REVIEWS_URL = 'https://share.google/i0ilkk0cyukkV0Gpo'
 
 const heroSlides = [
