@@ -76,11 +76,9 @@ export default function Page() {
 
         <div className="relative z-10 mx-auto flex max-w-6xl flex-col items-start px-6 pb-20 pt-36 md:pt-44">
           <p className="mb-4 text-sm font-semibold tracking-[0.18em] text-[#e7bda8]">PURE SKIN CLINIC</p>
-          <h3 className="max-w-3xl text-5xl font-light leading-[1.18] md:text-7xl">
-            إزالة الشعر
-           
-            <span className="text-[#e6b69c]">بتقنيات ليزر متقدمة</span>
-          </h3>
+         <h1 className="text-4xl font-light leading-tight md:text-5xl">
+  إزالة الشعر بتقنيات ليزر متقدمة
+</h1>
           <p className="mt-6 max-w-xl text-base leading-8 text-[#f0dfd6]">
             {heroSlides[activeSlide].title} — {heroSlides[activeSlide].subtitle}
           </p>
