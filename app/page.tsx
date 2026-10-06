@@ -134,15 +134,110 @@ export default function Page() {
         </div>
       </section>
 
-      <section id="reviews" className="bg-[#422c2b] px-6 py-24 text-white">
-        <div className="mx-auto max-w-5xl text-center">
-          <p className="text-xs font-bold tracking-[0.25em] text-[#e7bda8]">تجربة العملاء</p>
-          <h2 className="mt-4 text-4xl font-light">آراء عملائنا على Google</h2>
-          <p className="mx-auto mt-5 max-w-2xl text-sm leading-8 text-[#ead8cf]">يمكنك الاطلاع على تقييمات وآراء عملاء بيور سكن مباشرة من صفحة Google الخاصة بالعيادة.</p>
-          <a href={GOOGLE_REVIEWS_URL} target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex items-center gap-3 rounded-full bg-[#e6b69c] px-8 py-4 text-sm font-bold text-[#3d2524]"><span className="text-lg">★</span> شاهد تقييماتنا على Google</a>
-        </div>
-      </section>
+// قسم تقييمات عملاء الليزر
+      
+     <section id="reviews" className="bg-[#faf7f3] px-6 py-24 text-[#422c2b]" dir="rtl">
+  <div className="mx-auto max-w-5xl text-center">
 
+    <p className="text-xs font-bold tracking-[0.25em] text-[#b98262]">
+      تجارب عملائنا
+    </p>
+
+    <h2 className="mt-4 text-4xl font-light md:text-5xl">
+      ماذا يقول عملاؤنا؟
+    </h2>
+
+    <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-[#8a6c6f]">
+      تجارب عملائنا مع جلسات إزالة الشعر بالليزر في بيور سكن
+    </p>
+
+    <div className="mt-14 grid gap-7 md:grid-cols-3">
+
+      {/* Review 1 */}
+      <div className="rounded-[1.75rem] bg-white p-7 text-right shadow-[0_10px_35px_rgba(63,43,43,0.06)]">
+
+        <h3 className="text-xl font-semibold">
+          تجربة إزالة الشعر بالليزر
+        </h3>
+
+        <div className="mt-4 flex gap-1 text-[#d9a04d]">
+          ★ ★ ★ ★ ★
+        </div>
+
+        <p className="mt-6 text-sm leading-8 text-[#765f57]">
+          كانت تجربتي مع جلسات إزالة الشعر بالليزر ممتازة،
+          وأكثر شيء أعجبني هو الاهتمام بالتفاصيل وشرح الخطوات
+          قبل الجلسة.
+        </p>
+
+        <div className="mt-6 border-t border-[#eadfd8] pt-5 text-sm font-semibold">
+          تجربة عميلة
+        </div>
+
+      </div>
+
+      {/* Review 2 */}
+      <div className="rounded-[1.75rem] bg-white p-7 text-right shadow-[0_10px_35px_rgba(63,43,43,0.06)]">
+
+        <h3 className="text-xl font-semibold">
+          تجربة Splendor X
+        </h3>
+
+        <div className="mt-4 flex gap-1 text-[#d9a04d]">
+          ★ ★ ★ ★ ★
+        </div>
+
+        <p className="mt-6 text-sm leading-8 text-[#765f57]">
+          تجربة مريحة جدًا، والموظفة كانت متعاونة وشرحت لي
+          كل شيء قبل الجلسة. أعجبني الاهتمام بنظافة المكان
+          ودقة التعامل أثناء الجلسة.
+        </p>
+
+        <div className="mt-6 border-t border-[#eadfd8] pt-5 text-sm font-semibold">
+          تجربة عميلة
+        </div>
+
+      </div>
+
+      {/* Review 3 */}
+      <div className="rounded-[1.75rem] bg-white p-7 text-right shadow-[0_10px_35px_rgba(63,43,43,0.06)]">
+
+        <h3 className="text-xl font-semibold">
+          تجربة GentleMax Pro Plus
+        </h3>
+
+        <div className="mt-4 flex gap-1 text-[#d9a04d]">
+          ★ ★ ★ ★ ★
+        </div>
+
+        <p className="mt-6 text-sm leading-8 text-[#765f57]">
+          من أفضل تجارب الليزر بالنسبة لي. المكان مرتب،
+          والتعامل راقٍ، وتم اختيار الإعدادات المناسبة لي
+          مع متابعة واهتمام أثناء الجلسة.
+        </p>
+
+        <div className="mt-6 border-t border-[#eadfd8] pt-5 text-sm font-semibold">
+          تجربة عميلة
+        </div>
+
+      </div>
+
+    </div>
+
+    {/* Google Reviews Button */}
+    <a
+      href={GOOGLE_REVIEWS_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="mt-12 inline-flex items-center gap-3 rounded-full bg-[#422c2b] px-9 py-4 text-sm font-semibold text-white transition hover:-translate-y-1 hover:shadow-lg"
+    >
+      شاهد تقييمات Google
+    </a>
+
+  </div>
+</section>
+
+      
       <section id="location" className="px-6 py-24">
         <div className="mx-auto max-w-6xl rounded-[2rem] bg-[#efe4dc] p-8 md:p-12">
           <div className="grid gap-10 md:grid-cols-2 md:items-center">
