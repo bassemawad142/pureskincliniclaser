@@ -14,7 +14,7 @@ const heroSlides = [
 
 const laserServices = [
   { title: 'GentleMax Pro Plus', subtitle: 'Candela', image: '/gentalmax.png', description: 'تقنية متقدمة لإزالة الشعر بالليزر، مع اختيار الإعدادات المناسبة حسب نوع البشرة والشعر وتقييم المختص.' },
-  { title: 'Splendor X', subtitle: 'Lumenis', image: '/splendorx.png', description: 'تقنية ليزر متقدمة لإزالة الشعر، مع اختيار الإعداد المناسب وفق احتياج كل حالة وتقييم المختص.' },
+  { title: 'Splendor X', subtitle: 'Lumenis', image: '/splendorx3.jpeg', description: 'تقنية ليزر متقدمة لإزالة الشعر، مع اختيار الإعداد المناسب وفق احتياج كل حالة وتقييم المختص.' },
   { title: 'Q-Switch', subtitle: 'للتشقير', image: '/qswitch.png', description: 'تقنية ليزر متخصصة تُستخدم ضمن خدمات التشقير وفق تقييم المختص.' },
 ]
 
