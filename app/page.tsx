@@ -7,7 +7,7 @@ const GOOGLE_SHEET_URL =
 const GOOGLE_REVIEWS_URL = 'https://share.google/i0ilkk0cyukkV0Gpo'
 
 const heroSlides = [
-  { image: '/splendorx.png', alt: 'جهاز Splendor X لإزالة الشعر بالليزر', title: 'Splendor X', subtitle: 'تقنية متقدمة لإزالة الشعر' },
+  { image: '/splendorx1.jpg', alt: 'جهاز Splendor X لإزالة الشعر بالليزر', title: 'Splendor X', subtitle: 'تقنية متقدمة لإزالة الشعر' },
   { image: '/gentalmax2.jpg', alt: 'جهاز GentleMax Pro Plus لإزالة الشعر بالليزر', title: 'GentleMax Pro Plus', subtitle: 'تقنية متقدمة لإزالة الشعر' },
   { image: '/qswitch1.jpg', alt: 'جهاز Q-Switch للتشقير', title: 'Q-Switch', subtitle: 'للتشقير وتوحيد مظهر البشرة' },
 ]
