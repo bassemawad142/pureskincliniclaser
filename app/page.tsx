@@ -237,20 +237,77 @@ export default function Page() {
   </div>
 </section>
 
-      
-      <section id="location" className="px-6 py-24">
-        <div className="mx-auto max-w-6xl rounded-[2rem] bg-[#efe4dc] p-8 md:p-12">
-          <div className="grid gap-10 md:grid-cols-2 md:items-center">
-            <div>
-              <p className="mb-3 text-xs font-bold tracking-[0.25em] text-[#a96f59]">موقعنا</p>
-              <h2 className="text-4xl font-light">نلتقي بك في الرياض</h2>
-              <p className="mt-5 leading-8 text-[#765f57]">بيور سكن كلينك — الرياض</p>
-              <a href="https://www.google.com/maps/search/?api=1&query=Pure+Skin+Clinic+Riyadh" target="_blank" rel="noopener noreferrer" className="mt-7 inline-block rounded-full bg-[#4a3430] px-7 py-3.5 text-sm font-bold text-white">فتح الموقع على Google Maps</a>
-            </div>
-            <div className="flex min-h-[260px] items-center justify-center rounded-[1.5rem] bg-[#d9c4b7] text-center"><div><div className="text-4xl">📍</div><p className="mt-4 font-semibold">Pure Skin Clinic</p><p className="mt-1 text-sm text-[#765f57]">الرياض</p></div></div>
-          </div>
-        </div>
-      </section>
+     {/* =====================================================
+      LOCATION - LASER CLINIC
+  ====================================================== */}
+
+<section
+  id="location"
+  className="bg-[#efe4dc] px-6 py-20 md:py-24"
+>
+  <div className="mx-auto max-w-6xl">
+
+    <div className="mb-12 text-center">
+      <p className="mb-3 text-xs font-bold tracking-[0.25em] text-[#b17c67]">
+        زورينا في العيادة
+      </p>
+
+      <h2 className="text-3xl font-light text-[#4a3430] md:text-4xl">
+        موقع بيور سكن
+      </h2>
+
+      <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-[#826e67]">
+        يسعدنا زيارتك في عيادتنا في الرياض لتجربة تقنيات الليزر المتقدمة.
+      </p>
+    </div>
+
+    <div className="grid overflow-hidden rounded-[2rem] bg-white shadow-[0_12px_40px_rgba(92,62,52,0.08)] md:grid-cols-2">
+
+      {/* Google Maps */}
+      <div className="min-h-[380px]">
+        <iframe
+          title="موقع بيور سكن في الرياض"
+          src="https://www.google.com/maps?q=Pure%20Skin%20Clinics%20Riyadh&output=embed"
+          className="h-full min-h-[380px] w-full border-0"
+          loading="lazy"
+          allowFullScreen
+        />
+      </div>
+
+      {/* Laser Content */}
+      <div className="flex flex-col justify-center p-8 md:p-12">
+
+        <p className="text-xs font-bold tracking-[0.25em] text-[#b17c67]">
+          PURE SKIN CLINIC
+        </p>
+
+        <h3 className="mt-4 text-3xl font-light text-[#4a3430]">
+          ننتظرك في الرياض
+        </h3>
+
+        <p className="mt-5 leading-8 text-[#765f57]">
+          اختاري تقنية الليزر المناسبة لك، واستمتعي بتجربة متقدمة
+          لإزالة الشعر مع أجهزة حديثة وفريق متخصص يهتم بأدق تفاصيل جلساتك.
+        </p>
+
+        <p className="mt-4 leading-8 text-[#765f57]">
+          في بيور سكن نحرص على اختيار الإعدادات المناسبة لكل حالة
+          لتقديم تجربة ليزر مريحة وآمنة ومناسبة لاحتياجاتك.
+        </p>
+
+        <a
+          href="https://www.google.com/maps/search/?api=1&query=Pure%20Skin%20Clinics%20Riyadh"
+          target="_blank"
+          rel="noreferrer"
+          className="mt-7 inline-flex w-fit rounded-full bg-[#422c2b] px-7 py-4 text-sm font-bold text-white transition hover:bg-[#5a3b39]"
+        >
+          افتحي الموقع على Google Maps
+        </a>
+
+      </div>
+    </div>
+  </div>
+</section>
 
       <section id="booking" className="px-6 py-24">
         <div className="mx-auto max-w-4xl rounded-[2rem] bg-[#422c2b] px-7 py-12 text-center text-white md:px-16">
