@@ -41,17 +41,21 @@ export default function Page() {
       return
     }
     try {
-      await fetch(GOOGLE_SHEET_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify(data),
-      })
-      setSubmitted(true)
-      form.reset()
-    } catch (error) {
-      console.error(error)
-      alert('حدث خطأ أثناء إرسال البيانات، يرجى المحاولة مرة أخرى')
+     await fetch(GOOGLE_SHEET_URL, {
+  method: 'POST',
+  mode: 'no-cors',
+  headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+  body: JSON.stringify(data),
+})
+
+// إرسال Conversion إلى Google Tag Manager بعد نجاح إرسال الطلب
+window.dataLayer = window.dataLayer || []
+window.dataLayer.push({
+  event: 'laser_lead_submitted',
+})
+
+setSubmitted(true)
+form.reset()
     }
   }
 
