@@ -607,20 +607,14 @@ export default function Page() {
       {/* ================= FLOATING BUTTONS ================= */}
 {/* WhatsApp */}
 <a
-  href="https://wa.me/966559610942"
-  target="_blank"
-  rel="noopener noreferrer"
-  aria-label="واتساب"
-  onClick={() => {
-    window.dataLayer = window.dataLayer || []
-    window.dataLayer.push({
-      event: 'laser_whatsapp_click',
-    })
-  }}
-  className="flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg"
->
-  <span className="text-2xl">◉</span>
-</a>
+          href="https://wa.me/966559610942"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="واتساب"
+          className="flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg"
+        >
+          <span className="text-2xl">◉</span>
+        </a>
         {/* Phone */}
 
       <a
