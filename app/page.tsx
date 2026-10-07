@@ -2,10 +2,17 @@
 
 import { useEffect, useState } from 'react'
 
+declare global {
+  interface Window {
+    dataLayer: Record<string, any>[]
+  }
+}
+
 const GOOGLE_SHEET_URL =
   'https://script.google.com/macros/s/AKfycbyc95ujU9xSd5BU9yMxcNn3jjzRFhOz0MuY5puRGMFAK2d4sUO23dsah3NrzaU34gSDyw/exec'
 
-const GOOGLE_REVIEWS_URL = 'https://share.google/i0ilkk0cyukkV0Gpo'
+const GOOGLE_REVIEWS_URL =
+  'https://share.google/i0ilkk0cyukkV0Gpo'
 
 const heroSlides = [
   {
@@ -57,15 +64,16 @@ export default function Page() {
   const [submitted, setSubmitted] = useState(false)
 
   useEffect(() => {
-    const timer = window.setInterval(
-      () => setActiveSlide((i) => (i + 1) % heroSlides.length),
-      5000
-    )
+    const timer = window.setInterval(() => {
+      setActiveSlide((i) => (i + 1) % heroSlides.length)
+    }, 5000)
 
     return () => window.clearInterval(timer)
   }, [])
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement>
+  ) => {
     e.preventDefault()
 
     const form = e.currentTarget
@@ -97,18 +105,18 @@ export default function Page() {
         body: JSON.stringify(data),
       })
 
-      // إرسال Conversion إلى Google Tag Manager بعد نجاح إرسال الطلب
-      ;(window as any).dataLayer = (window as any).dataLayer || []
+      // Google Ads / GTM Conversion
+      window.dataLayer = window.dataLayer || []
 
-      ;(window as any).dataLayer.push({
+      window.dataLayer.push({
         event: 'laser_lead_submitted',
       })
 
       setSubmitted(true)
       form.reset()
     } catch (error) {
-      console.error('Booking form error:', error)
-      alert('حدث خطأ أثناء إرسال البيانات، يرجى المحاولة مرة أخرى.')
+      console.error('Booking submission error:', error)
+      alert('حدث خطأ، يرجى المحاولة مرة أخرى.')
     }
   }
 
@@ -117,14 +125,18 @@ export default function Page() {
       dir="rtl"
       className="min-h-screen bg-[#fbf8f5] text-[#3d3030]"
     >
-      {/* ================= HERO ================= */}
+      {/* =====================================================
+          HERO
+      ====================================================== */}
 
       <section className="relative min-h-[760px] overflow-hidden bg-[#211d1b] text-white">
         {heroSlides.map((slide, index) => (
           <div
             key={slide.image}
             className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${
-              activeSlide === index ? 'opacity-100' : 'opacity-0'
+              activeSlide === index
+                ? 'opacity-100'
+                : 'opacity-0'
             }`}
             style={{
               backgroundImage: `url('${slide.image}')`,
@@ -133,8 +145,6 @@ export default function Page() {
         ))}
 
         <div className="absolute inset-0 bg-gradient-to-l from-black/80 via-black/35 to-black/20" />
-
-        {/* NAVBAR */}
 
         <nav className="relative z-10 mx-auto flex max-w-6xl items-center justify-between px-6 py-7">
           <div className="font-sans text-lg font-medium tracking-[0.08em] text-[#f6e5d7] sm:text-xl md:text-2xl">
@@ -155,8 +165,6 @@ export default function Page() {
             احجزي موعدك
           </a>
         </nav>
-
-        {/* HERO CONTENT */}
 
         <div className="relative z-10 mx-auto flex max-w-6xl flex-col items-start px-6 pb-20 pt-36 md:pt-44">
           <p className="mb-4 text-sm font-semibold tracking-[0.18em] text-[#e7bda8]">
@@ -180,8 +188,6 @@ export default function Page() {
           </a>
         </div>
 
-        {/* SLIDER DOTS */}
-
         <div className="absolute bottom-7 left-1/2 z-20 flex -translate-x-1/2 gap-3">
           {heroSlides.map((slide, index) => (
             <button
@@ -198,14 +204,13 @@ export default function Page() {
           ))}
         </div>
 
-        {/* SLIDER ARROWS */}
-
         <button
           type="button"
           aria-label="الصورة السابقة"
           onClick={() =>
             setActiveSlide(
-              (activeSlide - 1 + heroSlides.length) % heroSlides.length
+              (activeSlide - 1 + heroSlides.length) %
+                heroSlides.length
             )
           }
           className="absolute right-5 top-1/2 z-20 hidden h-11 w-11 -translate-y-1/2 rounded-full border border-white/30 bg-black/15 text-xl md:block"
@@ -217,7 +222,9 @@ export default function Page() {
           type="button"
           aria-label="الصورة التالية"
           onClick={() =>
-            setActiveSlide((activeSlide + 1) % heroSlides.length)
+            setActiveSlide(
+              (activeSlide + 1) % heroSlides.length
+            )
           }
           className="absolute left-5 top-1/2 z-20 hidden h-11 w-11 -translate-y-1/2 rounded-full border border-white/30 bg-black/15 text-xl md:block"
         >
@@ -225,7 +232,9 @@ export default function Page() {
         </button>
       </section>
 
-      {/* ================= LASER ================= */}
+      {/* =====================================================
+          LASER SERVICES
+      ====================================================== */}
 
       <section id="laser" className="px-6 py-24">
         <div className="mx-auto max-w-6xl text-center">
@@ -238,8 +247,8 @@ export default function Page() {
           </h2>
 
           <p className="mx-auto mt-5 max-w-2xl text-sm leading-8 text-[#806b63]">
-            نوفر في بيور سكن مجموعة من تقنيات الليزر، ويتم اختيار التقنية
-            والإعدادات المناسبة بعد تقييم الحالة.
+            نوفر في بيور سكن مجموعة من تقنيات الليزر، ويتم اختيار
+            التقنية والإعدادات المناسبة بعد تقييم الحالة.
           </p>
 
           <div className="mt-14 grid gap-7 md:grid-cols-3">
@@ -282,7 +291,9 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ================= BOOKING ================= */}
+      {/* =====================================================
+          BOOKING
+      ====================================================== */}
 
       <section id="booking" className="px-6 py-24">
         <div className="mx-auto max-w-4xl rounded-[2rem] bg-[#422c2b] px-7 py-12 text-center text-white md:px-16">
@@ -363,7 +374,9 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ================= TECHNOLOGY ================= */}
+      {/* =====================================================
+          TECHNOLOGY
+      ====================================================== */}
 
       <section
         id="technology"
@@ -387,7 +400,8 @@ export default function Page() {
               </h3>
 
               <p className="mt-3 text-sm leading-7 text-[#806b63]">
-                جهاز Candela متقدم لإزالة الشعر، مع إعدادات تُحدد بحسب الحالة.
+                جهاز Candela متقدم لإزالة الشعر، مع إعدادات
+                تُحدد بحسب الحالة.
               </p>
             </div>
 
@@ -397,7 +411,8 @@ export default function Page() {
               </h3>
 
               <p className="mt-3 text-sm leading-7 text-[#806b63]">
-                جهاز Lumenis متقدم لإزالة الشعر، مع اختيار التقنية المناسبة حسب الحالة.
+                جهاز Lumenis متقدم لإزالة الشعر، مع اختيار
+                التقنية المناسبة حسب الحالة.
               </p>
             </div>
 
@@ -407,14 +422,17 @@ export default function Page() {
               </h3>
 
               <p className="mt-3 text-sm leading-7 text-[#806b63]">
-                تقنية متخصصة للتشقير ضمن خطة مناسبة بعد تقييم المختص.
+                تقنية متخصصة للتشقير ضمن خطة مناسبة بعد تقييم
+                المختص.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ================= REVIEWS ================= */}
+      {/* =====================================================
+          REVIEWS
+      ====================================================== */}
 
       <section
         id="reviews"
@@ -435,7 +453,6 @@ export default function Page() {
           </p>
 
           <div className="mt-14 grid gap-7 md:grid-cols-3">
-            {/* Review 1 */}
 
             <div className="rounded-[1.75rem] bg-white p-7 text-right shadow-[0_10px_35px_rgba(63,43,43,0.06)]">
               <h3 className="text-xl font-semibold">
@@ -457,8 +474,6 @@ export default function Page() {
               </div>
             </div>
 
-            {/* Review 2 */}
-
             <div className="rounded-[1.75rem] bg-white p-7 text-right shadow-[0_10px_35px_rgba(63,43,43,0.06)]">
               <h3 className="text-xl font-semibold">
                 تجربة Splendor X
@@ -479,8 +494,6 @@ export default function Page() {
               </div>
             </div>
 
-            {/* Review 3 */}
-
             <div className="rounded-[1.75rem] bg-white p-7 text-right shadow-[0_10px_35px_rgba(63,43,43,0.06)]">
               <h3 className="text-xl font-semibold">
                 تجربة GentleMax Pro Plus
@@ -500,9 +513,8 @@ export default function Page() {
                 تجربة عميلة
               </div>
             </div>
-          </div>
 
-          {/* Google Reviews */}
+          </div>
 
           <a
             href={GOOGLE_REVIEWS_URL}
@@ -515,13 +527,16 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ================= LOCATION ================= */}
+      {/* =====================================================
+          LOCATION
+      ====================================================== */}
 
       <section
         id="location"
         className="bg-[#efe4dc] px-6 py-20 md:py-24"
       >
         <div className="mx-auto max-w-6xl">
+
           <div className="mb-12 text-center">
             <p className="mb-3 text-xs font-bold tracking-[0.25em] text-[#b17c67]">
               زورينا في العيادة
@@ -537,7 +552,6 @@ export default function Page() {
           </div>
 
           <div className="grid overflow-hidden rounded-[2rem] bg-white shadow-[0_12px_40px_rgba(92,62,52,0.08)] md:grid-cols-2">
-            {/* Google Maps */}
 
             <div className="min-h-[380px]">
               <iframe
@@ -549,9 +563,8 @@ export default function Page() {
               />
             </div>
 
-            {/* Laser Content */}
-
             <div className="flex flex-col justify-center p-8 md:p-12">
+
               <p className="text-xs font-bold tracking-[0.25em] text-[#b17c67]">
                 PURE SKIN CLINIC
               </p>
@@ -578,18 +591,22 @@ export default function Page() {
               >
                 افتحي الموقع على Google Maps
               </a>
+
             </div>
           </div>
         </div>
       </section>
 
-      {/* ================= FOOTER ================= */}
+      {/* =====================================================
+          FOOTER
+      ====================================================== */}
 
       <footer
         id="contact"
         className="border-t border-[#eaded7] px-6 py-10 pb-28"
       >
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 text-center text-sm text-[#806b63] md:flex-row">
+
           <div className="font-sans text-lg tracking-[0.06em] text-[#4a3430]">
             pure skin clinic
           </div>
@@ -601,40 +618,54 @@ export default function Page() {
           <div>
             © 2026 Pure Skin Clinic
           </div>
+
         </div>
       </footer>
 
-      {/* ================= FLOATING BUTTONS ================= */}
-{/* WhatsApp */}
-<a
+      {/* =====================================================
+          FLOATING BUTTONS
+      ====================================================== */}
+
+      <div className="fixed bottom-5 right-5 z-50 flex flex-col gap-3">
+
+        {/* WhatsApp */}
+
+        <a
           href="https://wa.me/966559610942"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="واتساب"
+          onClick={() => {
+            window.dataLayer = window.dataLayer || []
+
+            window.dataLayer.push({
+              event: 'laser_whatsapp_click',
+            })
+          }}
           className="flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg"
         >
           <span className="text-2xl">◉</span>
         </a>
+
         {/* Phone */}
 
-      <a
-  href="tel:920017285"
-  aria-label="اتصال"
-  onClick={() => {
-    ;(window as any).dataLayer = (window as any).dataLayer || []
-    ;(window as any).dataLayer.push({
-      event: 'laser_phone_click',
-    })
-  }}
-  className="flex h-14 w-14 items-center justify-center rounded-full bg-[#c9a27e] text-white shadow-lg"
->
-  <span className="text-2xl">☎</span>
-</a>
+        <a
+          href="tel:920017285"
+          aria-label="اتصال"
+          onClick={() => {
+            window.dataLayer = window.dataLayer || []
 
-        
+            window.dataLayer.push({
+              event: 'laser_phone_click',
+            })
+          }}
+          className="flex h-14 w-14 items-center justify-center rounded-full bg-[#c9a27e] text-white shadow-lg"
+        >
+          <span className="text-2xl">☎</span>
+        </a>
+
       </div>
 
-      
     </main>
   )
 }
