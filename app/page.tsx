@@ -621,14 +621,24 @@ export default function Page() {
 
         {/* Phone */}
 
-        <a
-          href="tel:920017285"
-          aria-label="اتصال"
-          className="flex h-14 w-14 items-center justify-center rounded-full bg-[#c9a27e] text-white shadow-lg"
-        >
-          <span className="text-2xl">☎</span>
-        </a>
+      <a
+  href="tel:920017285"
+  aria-label="اتصال"
+  onClick={() => {
+    ;(window as any).dataLayer = (window as any).dataLayer || []
+    ;(window as any).dataLayer.push({
+      event: 'laser_phone_click',
+    })
+  }}
+  className="flex h-14 w-14 items-center justify-center rounded-full bg-[#c9a27e] text-white shadow-lg"
+>
+  <span className="text-2xl">☎</span>
+</a>
+
+        
       </div>
+
+      
     </main>
   )
 }
