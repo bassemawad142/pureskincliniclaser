@@ -118,6 +118,31 @@ export default function Page() {
         </div>
       </section>
 
+      
+      <section id="booking" className="px-6 py-24">
+        <div className="mx-auto max-w-4xl rounded-[2rem] bg-[#422c2b] px-7 py-12 text-center text-white md:px-16">
+          <p className="text-xs font-bold tracking-[0.25em] text-[#e7bda8]">خطوتك الأولى</p>
+          <h2 className="mt-4 text-4xl font-light">احجزي موعدك</h2>
+          {submitted ? (
+            <div className="mx-auto mt-8 max-w-2xl rounded-2xl border border-[#e7bda8]/30 bg-white/10 p-6"><p className="text-lg font-semibold">تم استلام بياناتك بنجاح ✓</p><p className="mt-2 text-sm text-[#ead8cf]">سيتواصل معك فريق بيور سكن قريباً.</p></div>
+          ) : (
+            <form onSubmit={handleSubmit} className="mx-auto mt-8 grid max-w-2xl gap-3 md:grid-cols-2">
+              <input name="name" required placeholder="الاسم الكامل" className="rounded-xl border border-white/15 bg-white/10 px-5 py-4 text-right text-sm placeholder:text-[#d9c2b8]" />
+              <input name="phone" required type="tel" inputMode="tel" placeholder="رقم الجوال" className="rounded-xl border border-white/15 bg-white/10 px-5 py-4 text-right text-sm placeholder:text-[#d9c2b8]" />
+              <select name="service" required defaultValue="الخدمة المطلوبة" className="rounded-xl border border-white/15 bg-white/10 px-5 py-4 text-right text-sm text-[#ead8cf] md:col-span-2">
+                <option className="text-[#3d3030]">الخدمة المطلوبة</option>
+                <option className="text-[#3d3030]">GentleMax Pro Plus</option>
+                <option className="text-[#3d3030]">Splendor X</option>
+                <option className="text-[#3d3030]">Q-Switch للتشقير</option>
+                <option className="text-[#3d3030]">استشارة ليزر</option>
+              </select>
+              <button type="submit" className="rounded-xl bg-[#e6b69c] px-6 py-4 text-sm font-bold text-[#3d2524] md:col-span-2">أرغب بحجز موعد</button>
+            </form>
+          )}
+        </div>
+      </section>
+
+
       <section id="technology" className="bg-[#efe4dc] px-6 py-24">
         <div className="mx-auto max-w-6xl">
           <div className="text-center">
@@ -306,29 +331,6 @@ export default function Page() {
     </div>
   </div>
 </section>
-
-      <section id="booking" className="px-6 py-24">
-        <div className="mx-auto max-w-4xl rounded-[2rem] bg-[#422c2b] px-7 py-12 text-center text-white md:px-16">
-          <p className="text-xs font-bold tracking-[0.25em] text-[#e7bda8]">خطوتك الأولى</p>
-          <h2 className="mt-4 text-4xl font-light">احجزي موعدك</h2>
-          {submitted ? (
-            <div className="mx-auto mt-8 max-w-2xl rounded-2xl border border-[#e7bda8]/30 bg-white/10 p-6"><p className="text-lg font-semibold">تم استلام بياناتك بنجاح ✓</p><p className="mt-2 text-sm text-[#ead8cf]">سيتواصل معك فريق بيور سكن قريباً.</p></div>
-          ) : (
-            <form onSubmit={handleSubmit} className="mx-auto mt-8 grid max-w-2xl gap-3 md:grid-cols-2">
-              <input name="name" required placeholder="الاسم الكامل" className="rounded-xl border border-white/15 bg-white/10 px-5 py-4 text-right text-sm placeholder:text-[#d9c2b8]" />
-              <input name="phone" required type="tel" inputMode="tel" placeholder="رقم الجوال" className="rounded-xl border border-white/15 bg-white/10 px-5 py-4 text-right text-sm placeholder:text-[#d9c2b8]" />
-              <select name="service" required defaultValue="الخدمة المطلوبة" className="rounded-xl border border-white/15 bg-white/10 px-5 py-4 text-right text-sm text-[#ead8cf] md:col-span-2">
-                <option className="text-[#3d3030]">الخدمة المطلوبة</option>
-                <option className="text-[#3d3030]">GentleMax Pro Plus</option>
-                <option className="text-[#3d3030]">Splendor X</option>
-                <option className="text-[#3d3030]">Q-Switch للتشقير</option>
-                <option className="text-[#3d3030]">استشارة ليزر</option>
-              </select>
-              <button type="submit" className="rounded-xl bg-[#e6b69c] px-6 py-4 text-sm font-bold text-[#3d2524] md:col-span-2">أرغب بحجز موعد</button>
-            </form>
-          )}
-        </div>
-      </section>
 
       <footer id="contact" className="border-t border-[#eaded7] px-6 py-10 pb-28">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 text-center text-sm text-[#806b63] md:flex-row">
