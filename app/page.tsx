@@ -41,7 +41,7 @@ export default function Page() {
       return
     }
     try {
-     await fetch(GOOGLE_SHEET_URL, {
+  await fetch(GOOGLE_SHEET_URL, {
   method: 'POST',
   mode: 'no-cors',
   headers: { 'Content-Type': 'text/plain;charset=utf-8' },
@@ -49,16 +49,15 @@ export default function Page() {
 })
 
 // إرسال Conversion إلى Google Tag Manager بعد نجاح إرسال الطلب
-window.dataLayer = window.dataLayer || []
-window.dataLayer.push({
+;(window as any).dataLayer = (window as any).dataLayer || []
+;(window as any).dataLayer.push({
   event: 'laser_lead_submitted',
 })
 
 setSubmitted(true)
 form.reset()
-    }
-  }
 
+      
   return (
     <main dir="rtl" className="min-h-screen bg-[#fbf8f5] text-[#3d3030]">
       <section className="relative min-h-[760px] overflow-hidden bg-[#211d1b] text-white">
