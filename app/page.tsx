@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 declare global {
   interface Window {
@@ -62,7 +62,11 @@ const laserServices = [
 export default function Page() {
   const [activeSlide, setActiveSlide] = useState(0)
   const [submitted, setSubmitted] = useState(false)
+const [isSubmitting, setIsSubmitting] = useState(false)
+const submissionLock = useRef(false)
 
+
+  
   useEffect(() => {
     const timer = window.setInterval(() => {
       setActiveSlide((i) => (i + 1) % heroSlides.length)
@@ -71,54 +75,64 @@ export default function Page() {
     return () => window.clearInterval(timer)
   }, [])
 
-  const handleSubmit = async (
-    e: React.FormEvent<HTMLFormElement>
-  ) => {
-    e.preventDefault()
 
-    const form = e.currentTarget
-    const fd = new FormData(form)
 
-    const data = {
-      name: fd.get('name')?.toString().trim() || '',
-      phone: fd.get('phone')?.toString().trim() || '',
-      service: fd.get('service')?.toString().trim() || '',
-    }
+const handleSubmit = async (
+  e: React.FormEvent<HTMLFormElement>
+) => {
+  e.preventDefault()
 
-    if (
-      !data.name ||
-      !data.phone ||
-      !data.service ||
-      data.service === 'الخدمة المطلوبة'
-    ) {
-      alert('يرجى تعبئة جميع البيانات')
-      return
-    }
+  // منع تكرار التسجيل عند الضغط أكثر من مرة
+  if (submissionLock.current) return
 
-    try {
-      await fetch(GOOGLE_SHEET_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-          'Content-Type': 'text/plain;charset=utf-8',
-        },
-        body: JSON.stringify(data),
-      })
+  const form = e.currentTarget
+  const fd = new FormData(form)
 
-      // Google Ads / GTM Conversion
-      window.dataLayer = window.dataLayer || []
-
-      window.dataLayer.push({
-        event: 'laser_lead_submitted',
-      })
-
-      setSubmitted(true)
-      form.reset()
-    } catch (error) {
-      console.error('Booking submission error:', error)
-      alert('حدث خطأ، يرجى المحاولة مرة أخرى.')
-    }
+  const data = {
+    name: fd.get('name')?.toString().trim() || '',
+    phone: fd.get('phone')?.toString().trim() || '',
+    service: fd.get('service')?.toString().trim() || '',
   }
+
+  if (
+    !data.name ||
+    !data.phone ||
+    !data.service ||
+    data.service === 'الخدمة المطلوبة'
+  ) {
+    alert('يرجى تعبئة جميع البيانات')
+    return
+  }
+
+  submissionLock.current = true
+  setIsSubmitting(true)
+
+  try {
+    await fetch(GOOGLE_SHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {
+        'Content-Type': 'text/plain;charset=utf-8',
+      },
+      body: JSON.stringify(data),
+    })
+
+    window.dataLayer = window.dataLayer || []
+    window.dataLayer.push({
+      event: 'laser_lead_submitted',
+    })
+
+    setSubmitted(true)
+    form.reset()
+  } catch (error) {
+    console.error('Booking submission error:', error)
+    alert('حدث خطأ، يرجى المحاولة مرة أخرى.')
+  } finally {
+    submissionLock.current = false
+    setIsSubmitting(false)
+  }
+}
+
 
   return (
     <main
@@ -365,9 +379,11 @@ export default function Page() {
 
               <button
                 type="submit"
-                className="rounded-xl bg-[#e6b69c] px-6 py-4 text-sm font-bold text-[#3d2524] md:col-span-2"
+                disabled={isSubmitting}
+                aria-busy={isSubmitting}
+                className="rounded-xl bg-[#e6b69c] px-6 py-4 text-sm font-bold text-[#3d2524] transition-opacity disabled:cursor-not-allowed disabled:opacity-60 md:col-span-2"
               >
-                أرغب بحجز موعد
+                {isSubmitting ? 'جاري التسجيل...' : 'أرغب بحجز موعد'}
               </button>
             </form>
           )}
