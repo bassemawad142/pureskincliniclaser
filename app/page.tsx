@@ -67,13 +67,24 @@ const submissionLock = useRef(false)
 
 
   
-  useEffect(() => {
-    const timer = window.setInterval(() => {
-      setActiveSlide((i) => (i + 1) % heroSlides.length)
-    }, 5000)
 
-    return () => window.clearInterval(timer)
-  }, [])
+useEffect(() => {
+  const isMobile =
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    )
+
+  if (isMobile) {
+    window.location.href = 'tel:920017285'
+    return
+  }
+
+  const timer = window.setInterval(() => {
+    setActiveSlide((i) => (i + 1) % heroSlides.length)
+  }, 5000)
+
+  return () => window.clearInterval(timer)
+}, [])
 
 
 
